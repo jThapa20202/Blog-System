@@ -103,3 +103,27 @@ Blog System/
 │   ├── logout.php
 
 │   └── admin.php
+
+**5. Database Setup Instructions**
+
+1.Open phpMyAdmin
+
+2.Create a database named:
+
+np02cs4a240089
+
+3.Import the provided SQL file:
+
+database.sql
+
+4.Update database credentials in:
+
+config/db.php
+
+**6. Admin Login Credentials**
+
+Username: admin
+
+Password: admin123
+
+(Password is stored securely using password hashing)
