@@ -6,7 +6,7 @@ if(!isset($_SESSION['user_id'])){
 }
 
 require_once "../config/db.php";
-require_once "../includes/functions.php"; // ✅ REQUIRED
+require_once "../includes/functions.php"; 
 
 $csrf_token = generateCSRFToken();
 
@@ -26,7 +26,6 @@ $message = "";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    // ✅ CSRF validation
     if(!verifyCSRFToken($_POST['csrf_token'] ?? '')){
         die("❌ CSRF validation failed!");
     }
@@ -41,9 +40,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         );
         $stmt->execute([$title, $content, $category_id, $id]);
 
-        $message = "✅ Post updated successfully!";
+        $message = "Post updated successfully!";
     } else {
-        $message = "❌ Please fill all fields.";
+        $message = "Please fill all fields.";
     }
 }
 ?>

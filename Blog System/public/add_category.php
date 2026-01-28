@@ -23,9 +23,9 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     if($name){
         $stmt = $pdo->prepare("INSERT INTO categories (name) VALUES (?)");
         $stmt->execute([$name]);
-        $message = "✅ Category added successfully!";
+        $message = "Category added successfully!";
     } else {
-        $message = "❌ Please enter a category name.";
+        $message = "Please enter a category name.";
     }
 }
 ?>

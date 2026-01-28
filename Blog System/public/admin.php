@@ -1,7 +1,7 @@
 <?php
-require_once "../config/db.php"; // connect to database
+require_once "../config/db.php"; 
 
-$username = "admin";      // your admin username
+$username = "admin";      //  admin username
 $plainPassword = "admin123"; // admin password
 
 $hashedPassword = password_hash($plainPassword, PASSWORD_DEFAULT);

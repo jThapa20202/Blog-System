@@ -49,6 +49,6 @@ $posts = $pdo->query("
         <p>This blog is part of my coursework project. Sharing thoughts & learning every day!</p>
     </div>
 
-</div> <!-- end container -->
+</div> 
 
 <?php include "../includes/footer.php"; ?>
