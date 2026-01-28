@@ -20,7 +20,6 @@ if(searchInput){
                     div.classList.add('search-result-item');
                     div.innerHTML = `<strong>${post.title}</strong> <small>(${post.category} | ${post.created_at.substring(0,4)})</small>`;
 
-                    // Make the item clickable
                     div.addEventListener('click', () => {
                         window.location.href = `post.php?id=${post.id}`;
                     });
@@ -35,8 +34,6 @@ if(searchInput){
 
 }
 
-
-// ========== Ajax Comment Submission ==========
 const commentForm = document.getElementById('comment-form');
 const commentsSection = document.querySelector('.comments-section');
 
@@ -59,7 +56,7 @@ if(commentForm && commentsSection){
 
                 // Create new comment div
                 const div = document.createElement('div');
-                div.classList.add('comment');
+                div.classList.add('comment', 'comment-box');
                 div.innerHTML = `<strong>${data.comment.author}:</strong>
                                 <p>${data.comment.comment_text}</p>
                                 <small>${data.comment.created_at}</small>`;

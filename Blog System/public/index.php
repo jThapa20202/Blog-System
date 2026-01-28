@@ -43,8 +43,7 @@ $posts = $pdo->query("
         </div>
     <?php endforeach; ?>
 
-
-    <!-- Optional About Card -->
+    <p>------------------------------------------------🌺🌺🌺🌺🌺🌺🌺🌺🌺🌺🌺🌺🌺🌺🌺🌺🌺🌺🌺-------------------------------------------------</p>
     <div class="card">
         <h3>About Me </h3>
         <p>This blog is part of my coursework project. Sharing thoughts & learning every day!</p>

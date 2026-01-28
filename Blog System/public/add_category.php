@@ -41,7 +41,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 <?php endif; ?>
 
 <form method="post">
-    <!-- ✅ CSRF token -->
     <input type="hidden" name="csrf_token" value="<?= $csrf_token ?>">
 
     <label>Category Name:</label><br>

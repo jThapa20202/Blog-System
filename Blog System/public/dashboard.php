@@ -41,7 +41,7 @@ $recentPosts = $pdo->query("
 <div class="dashboard-stats">
     <div class="stat-card">Total Posts: <?= $totalPosts ?></div>
     <div class="stat-card">Total Categories: <?= $totalCategories ?></div>
-    <div class="stat-card">Total Comments: <?= $totalComments ?></div>
+    <div class="stat-card">Total Feedbacks: <?= $totalComments ?></div>
 </div>
 
 <!-- Recent Posts Cards -->
