@@ -140,7 +140,7 @@ Password: admin123
 
 The website is hosted on the school’s student server.
 
-Live URL:  student.bicnepal.edu.np/~np02cs4a240089
+Live URL:  https://student.bicnepal.edu.np/~np02cs4a240089/Blog_System/public/
 
 **9. How to Use the System**
 
@@ -162,7 +162,7 @@ Comments can be added using AJAX without refreshing the page
 
 • No uniqueness constraints are applied at the database level for post titles.
 
-11. Declaration
+**11. Declaration**
 
 This project is my own work and was developed in accordance with the module guidelines. 
 AI tools were used only for learning support and clarification. 
