@@ -1,4 +1,4 @@
-/* ===== Step 1: Soft UI base (safe) ===== */
+
 body {
     background: linear-gradient(135deg, #f4eaff, #ffe6f2);
     color: #4a4a4a;
@@ -31,7 +31,7 @@ a {
     text-decoration: none;
 }
 
-/* ===== Navbar ===== */
+/*  Navbar  */
 nav {
     background: linear-gradient(135deg, #c3b1e1, #e4c1f9);
     color: white;
@@ -58,7 +58,7 @@ nav a:hover {
     text-decoration: underline;
 }
 
-/* ===== Buttons ===== */
+/*  Buttons  */
 .btn {
     padding: 10px 20px;
     border-radius: 10px;

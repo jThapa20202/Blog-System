@@ -1,44 +1,53 @@
-const searchInput = document.getElementById('search-input');
-const resultsContainer = document.getElementById('search-results');
+document.addEventListener('DOMContentLoaded', () => {
 
-if(searchInput){
-    searchInput.addEventListener('input', function() {
-        const query = this.value.trim();
+    /*  SEARCH AJAX  */
 
-        if(query.length < 1){
-            resultsContainer.innerHTML = '';
-            return;
-        }
+    const searchInput = document.getElementById('search-input');
+    const resultsContainer = document.getElementById('search-results');
 
-        fetch(`search_ajax.php?q=${encodeURIComponent(query)}`)
-        .then(res => res.json())
-        .then(data => {
-            resultsContainer.innerHTML = '';
-            if(data.length > 0){
-                data.forEach(post => {
-                    const div = document.createElement('div');
-                    div.classList.add('search-result-item');
-                    div.innerHTML = `<strong>${post.title}</strong> <small>(${post.category} | ${post.created_at.substring(0,4)})</small>`;
+    if (searchInput && resultsContainer) {
+        searchInput.addEventListener('input', function () {
+            const query = this.value.trim();
 
-                    div.addEventListener('click', () => {
-                        window.location.href = `post.php?id=${post.id}`;
-                    });
-
-                    resultsContainer.appendChild(div);
-                });
-            } else {
-                resultsContainer.innerHTML = '<div class="search-result-item">No results found</div>';
+            if (query.length < 1) {
+                resultsContainer.innerHTML = '';
+                return;
             }
+
+            fetch(`search_ajax.php?q=${encodeURIComponent(query)}`)
+                .then(res => res.json())
+                .then(data => {
+                    resultsContainer.innerHTML = '';
+
+                    if (data.length > 0) {
+                        data.forEach(post => {
+                            const div = document.createElement('div');
+                            div.classList.add('search-result-item');
+                            div.innerHTML = `
+                                <strong>${post.title}</strong>
+                                <small>(${post.category} | ${post.created_at.substring(0, 4)})</small>
+                            `;
+                            div.onclick = () => {
+                                window.location.href = `post.php?id=${post.id}`;
+                            };
+                            resultsContainer.appendChild(div);
+                        });
+                    } else {
+                        resultsContainer.innerHTML =
+                            '<div class="search-result-item">No results found</div>';
+                    }
+                });
         });
-    });
+    }
 
-}
+    /*  COMMENT AJAX  */
 
-const commentForm = document.getElementById('comment-form');
-const commentsSection = document.querySelector('.comments-section');
+    const commentForm = document.getElementById('comment-form');
+    const commentsSection = document.querySelector('.comments-section');
 
-if(commentForm && commentsSection){
-    commentForm.addEventListener('submit', function(e){
+    if (!commentForm || !commentsSection) return;
+
+    commentForm.addEventListener('submit', function (e) {
         e.preventDefault();
 
         const formData = new FormData(commentForm);
@@ -47,29 +56,16 @@ if(commentForm && commentsSection){
             method: 'POST',
             body: formData
         })
-        .then(res => res.json())
-        .then(data => {
-            if(data.status === 'success'){
-    // Remove "No comments yet." if it exists
-                const noComments = commentsSection.querySelector('.no-comments');
-                if(noComments) noComments.remove();
+        .then(res => res.text()) // 🔥 IMPORTANT CHANGE
+        .then(html => {
 
-                // Create new comment div
-                const div = document.createElement('div');
-                div.classList.add('comment', 'comment-box');
-                div.innerHTML = `<strong>${data.comment.author}:</strong>
-                                <p>${data.comment.comment_text}</p>
-                                <small>${data.comment.created_at}</small>`;
+            const noComments = commentsSection.querySelector('.no-comments');
+            if (noComments) noComments.remove();
 
-                // Prepend comment to the section
-                commentsSection.prepend(div);
-
-                // Clear form
-                commentForm.reset();
-            } else {
-                alert(data.message);
-            }
-
-        });
+            commentsSection.insertAdjacentHTML('afterbegin', html);
+            commentForm.reset();
+        })
+        .catch(() => alert('Something went wrong'));
     });
-}
+
+});
